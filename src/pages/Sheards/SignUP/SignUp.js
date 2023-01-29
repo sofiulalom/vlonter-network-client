@@ -2,6 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FaGofore } from 'react-icons/fa';
 import { SetauthToken } from '../../../api/SetauthToken';
+import useTitle from '../../../hooks/useTitle';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
@@ -9,6 +10,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 const SignUp = () => {
     const [error , setError]=useState(true)
     const {createSignUp, googleProvider}=useContext(AuthContext);
+    useTitle('sign-up')
     const handleGoogleSignUp=()=>{
       const GoogleProvider=new GoogleAuthProvider()
       googleProvider(GoogleProvider)

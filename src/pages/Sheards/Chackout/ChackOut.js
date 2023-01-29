@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import {  useLoaderData } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const ChackOut = () => {
     const {_id, title, price} =useLoaderData();
     const {user}=useContext(AuthContext)
+    useTitle('chack-Out')
     const handlePlaceOrders =event =>{
        event.preventDefault();
        const form =event.target;

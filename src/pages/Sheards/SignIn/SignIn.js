@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import {  FaGofore } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SetauthToken } from '../../../api/SetauthToken';
+import useTitle from '../../../hooks/useTitle';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
@@ -11,6 +12,7 @@ const SignIn = () => {
     const navigate=useNavigate()
     const {UserLOgin, googleProvider}=useContext(AuthContext);
     const location =useLocation();
+    useTitle('sign-In')
     const from =location.state?.from?.pathname || '/'
     const handleGoogleButton=()=>{
         const providerGoogle=new GoogleAuthProvider();

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../hooks/useTitle';
 import HomeSumary from './shardshome/HomeSumary';
 
 const Home = () => {
     const [resulte, setResulte]=useState([])
+    useTitle('Home')
     useEffect(()=>{
         fetch(`http://localhost:5000/services`)
         .then(res => res.json())
