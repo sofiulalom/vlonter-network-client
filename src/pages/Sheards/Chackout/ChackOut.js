@@ -30,7 +30,8 @@ const ChackOut = () => {
        fetch('http://localhost:5000/orders',{
         method: 'POSt',
         headers:{
-            "content-type": 'application/json'
+            "content-type": 'application/json',
+            authorization: `Bearer ${localStorage.getItem('volenter-token')}`
         },
         body: JSON.stringify(order)
        })

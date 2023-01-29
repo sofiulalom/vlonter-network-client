@@ -20,8 +20,8 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
     const logOut=()=>{
-        
-        return signOut(auth)
+        localStorage.removeItem('volenter-token');
+        return signOut(auth);
     }
     useEffect(()=>{
       const  unSubsCribe=onAuthStateChanged(auth, (currentUser)=>{

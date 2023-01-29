@@ -1,6 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FaGofore } from 'react-icons/fa';
+import { SetauthToken } from '../../../api/SetauthToken';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
@@ -11,7 +12,10 @@ const SignUp = () => {
     const handleGoogleSignUp=()=>{
       const GoogleProvider=new GoogleAuthProvider()
       googleProvider(GoogleProvider)
-      .then(()=> {})
+      .then((result)=> {
+          const user =result.user;
+          SetauthToken(user)
+      })
       .catch(e => console.error(e))
     }
     const handleSignUp=event=>{
@@ -24,13 +28,16 @@ const SignUp = () => {
         createSignUp(email, password)
         .then(result=> {
             const user =result.user;
-            console.log(user)
+            SetauthToken(user)
+
             form.reset()
+            
         })
         .catch(err => {
             
             console.error(err)
             setError(err.message)
+          
         
         })
 

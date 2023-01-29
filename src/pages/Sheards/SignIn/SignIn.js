@@ -2,6 +2,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import {  FaGofore } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { SetauthToken } from '../../../api/SetauthToken';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
@@ -14,7 +15,13 @@ const SignIn = () => {
     const handleGoogleButton=()=>{
         const providerGoogle=new GoogleAuthProvider();
            googleProvider(providerGoogle)
-        .then(()=> {})
+        .then((result)=> {
+          const user =result.user;
+           
+          SetauthToken(user)
+
+           navigate(from, {replace: true})
+        })
         .then(e => console.error(e))
 
 
@@ -28,10 +35,8 @@ const SignIn = () => {
        UserLOgin(email, password)
        .then(result=>{
          const user =result.user;
-          console.log(user); 
-          form.reset() 
-          navigate(from ,{replace: true})
-          
+         SetauthToken(user)
+         navigate(from, {replace: true})
           
        })
        .catch(e => {
